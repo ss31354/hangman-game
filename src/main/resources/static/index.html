@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hangman Game - Choose Mode</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f4f7;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            margin-bottom: 40px;
-        }
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
-            margin: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Hangman</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>Welcome to Hangman Game</h1>
-<button onclick="window.location.href='singleplayer.html'">Single Player</button>
-<button onclick="window.location.href='multiplayer.html'">Multiplayer</button>
+<div id="login-container" class="container">
+    <h1>Multiplayer Hangman</h1>
+    <div class="form-group">
+        <input type="text" id="player-name" placeholder="Your name" class="form-control">
+    </div>
+    <div class="button-group">
+        <button id="create-game" class="btn btn-primary">Create Game</button>
+        <span class="divider">or</span>
+        <div class="join-group">
+            <input type="text" id="room-id" placeholder="Room ID" class="form-control">
+            <button id="join-game" class="btn btn-secondary">Join Game</button>
+        </div>
+    </div>
+    <div id="room-check" class="hidden"></div>
+</div>
+
+<div id="game-container" class="container hidden">
+    <h2>Room: <span id="room-id-display"></span></h2>
+    <div id="hint" class="hint"></div>
+    <div id="word-display" class="word-display"></div>
+    <div id="players-list" class="players-list"></div>
+
+    <div id="player-turn" class="player-turn"></div>
+
+    <div class="hangman-arena">
+        <div class="player-hangman">
+            <h3>Your Hangman</h3>
+            <pre id="player-hangman-art"></pre>
+            <div class="attempts">Attempts left: <span id="player-attempts">6</span></div>
+        </div>
+        <div class="opponent-hangman">
+            <h3>Opponent's Hangman</h3>
+            <pre id="opponent-hangman-art"></pre>
+            <div class="attempts">Attempts left: <span id="opponent-attempts">6</span></div>
+        </div>
+    </div>
+
+    <div id="message" class="message"></div>
+    <div id="letters" class="letters-container"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
